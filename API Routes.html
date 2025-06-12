@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API Routes</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <tr>
+      <th>Method</th>
+      <th>URL</th>
+      <th>Process</th>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/</td>
+      <td>Renders the index page (login/signup)</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/Project</td>
+      <td>Renders the Project page</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/profile</td>
+      <td>Fetches and renders user profile by std_id</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/profilestart</td>
+      <td>Renders the profile start page</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/history</td>
+      <td>Fetches and renders history log</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/contactus</td>
+      <td>Renders the contact us page</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/code</td>
+      <td>Renders the code generation page</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/mcq</td>
+      <td>Renders the MCQ generation page</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/email</td>
+      <td>Renders the email template page</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/letter</td>
+      <td>Renders the letter generation page</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/essay</td>
+      <td>Renders the essay generation page</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/summary</td>
+      <td>Renders the summary generation page</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/senti</td>
+      <td>Renders the sentiment analysis page</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/login</td>
+      <td>Authenticates and renders home page</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/logout</td>
+      <td>Logs out and renders index page</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/test-db</td>
+      <td>Tests database connectivity</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/delete-history</td>
+      <td>Deletes a history entry and redirects</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/signup</td>
+      <td>Registers a new user (simplified version)</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/register</td>
+      <td>Registers a new user with full profile</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/update-profile</td>
+      <td>Updates user profile in database</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/generate-code</td>
+      <td>Generates code output using AI</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/generate-mcq</td>
+      <td>Generates MCQs for a given topic</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/generate-email-template</td>
+      <td>Generates email templates</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/generate-letter</td>
+      <td>Generates formal letters</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/generate-essay</td>
+      <td>Generates essays</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/generate-summary</td>
+      <td>Generates summaries</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/analyze-sentiment</td>
+      <td>Performs sentiment analysis on text</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/save-code</td>
+      <td>Saves input/output to history collection</td>
+    </tr>
+  </table>
+</body>
+</html>

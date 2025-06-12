@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background: url('https://images.unsplash.com/photo-1485470733090-0aae1788d5af?q=80&w=1834&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background: rgba(0, 0, 0, 0.7);
+      position: fixed;
+      width: 100%;
+      box-sizing: border-box;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      height: 60px; /* Fixed header height */
+    }
+
+    header h1 {
+      font-size: 24px;
+      margin: 0;
+      color: white;
+    }
+
+    header nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding-right: 20px;
+    }
+
+    header nav button {
+      background: transparent;
+      border: 0px solid #fff;
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header nav button:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Align items to the top */
+      text-align: center;
+      margin-top: 60px; /* Adjusted to match header height */
+      padding: 20px;
+      height: calc(100vh - 60px); /* Adjusted to account for header height */
+      overflow-y: auto; /* Enable scrolling */
+      scrollbar-width: none; /* Hide scrollbar for Firefox */
+      -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+    }
+
+    .container::-webkit-scrollbar {
+      display: none; /* Hide scrollbar for Chrome/Safari */
+    }
+
+    .profile-section {
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 30px;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 600px;
+      overflow-y: auto; /* Enable scrolling inside the profile section */
+    }
+
+    .profile-section h2 {
+      color: #ffffff;
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .profile-section label {
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+      text-align: left;
+    }
+
+    .profile-section input,
+    .profile-section textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: 2px solid #ccc;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      font-size: 16px;
+      transition: border-color 0.3s, background-color 0.3s;
+    }
+
+    .profile-section input:focus,
+    .profile-section textarea:focus {
+      border-color: #00c000;
+      background-color: rgba(255, 255, 255, 0.2);
+      outline: none;
+    }
+
+    .profile-section button {
+      background-color: #787878;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s, opacity 0.3s;
+      width: 100%;
+      margin-bottom: 20px; /* Adjusted margin */
+    }
+
+    .profile-section button:hover {
+      background-color: transparent;
+      color: #00c000;
+      border: 2px solid #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Edu-Assist Hub</h1>
+    <nav>
+      <a href="http://localhost:3000/Project"><button>About Us</button></a>
+      <a href="http://localhost:3000/contactus"><button>Contact Us</button></a>
+      <a href="/"><button>Logout</button></a>
+    </nav>
+  </header>
+  <div class="container">
+    <div class="profile-section">
+      <h2>Profile Details</h2>
+      <form action="/update-profile" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="std_id" value="<%= user.std_id %>">
+        
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" value="<%= user.username %>">
+
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="fname" value="<%= user.fname %>">
+
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lname" value="<%= user.lname %>">
+
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" value="<%= user.age %>">
+
+        <label for="gender">Gender</label>
+        <input type="text" id="gender" name="gender" value="<%= user.gender %>">
+
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" value="<%= user.dob.toISOString().split('T')[0] %>">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" value="<%= user.email %>">
+
+        <label for="course">Course</label>
+        <input type="text" id="course" name="course" value="<%= user.course %>">
+
+        <label for="branch">Branch</label>
+        <input type="text" id="branch" name="branch" value="<%= user.branch %>">
+
+        <label for="phone">Phone</label>
+        <input type="text" id="phone" name="phone" value="<%= user.phone %>">
+
+        <label for="address">Address</label>
+        <textarea id="address" name="address"><%= user.address %></textarea>
+
+        <label for="state">State</label>
+        <input type="text" id="state" name="state" value="<%= user.state %>">
+
+        <label for="pincode">Pincode</label>
+        <input type="text" id="pincode" name="pincode" value="<%= user.pincode %>">
+
+        <label for="hobbies">Hobbies</label>
+        <textarea id="hobbies" name="hobbies"><%= user.hobbies.join(', ') %></textarea>
+
+        <button type="submit">Update Profile</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

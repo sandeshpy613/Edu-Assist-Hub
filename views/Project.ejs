@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edu-Assist Hub</title>
+    <style>
+        /* Reset default margin and padding */
+        body, h1, h2, h3, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Basic styling for the layout */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-image: url('https://images.unsplash.com/photo-1485470733090-0aae1788d5af?q=80&w=1834&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            min-height: 100vh; /* Allow content to expand */
+            color: #333; /* Dark text for better readability */
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+        
+        header h1 {
+            color: white;
+        }
+        
+        header nav button {
+            background: transparent;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 26px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 100px auto 20px; /* Push below the fixed header */
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* White container with slight transparency */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .team-members {
+            margin-bottom: 20px;
+        }
+
+        .member {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .member img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+            border: 3px solid #61dafb; /* Highlight border */
+            object-fit: cover;
+        }
+
+        .member-details {
+            flex: 1;
+        }
+
+        .member-details h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .member-details p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .project-summary {
+            margin-top: 20px;
+        }
+
+        .project-summary h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .project-summary p {
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .project-summary b {
+            color: #333;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            text-align: center;
+            padding: 10px 0;
+            color: white;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Edu-Assist Hub</h1>
+        <nav>
+           
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Team Members:</h2>
+        <div class="team-members">
+            <div class="member">
+                <!-- Change the image path based on where it's stored -->
+                <img src="/images/mem1.jpg" alt="Member 1">
+                <div class="member-details">
+                    <h3>Member 1</h3>
+                    <p><b>Name: Sandesh PY</b></p>
+                    <p><b>Semester: 1st Sem</b></p>
+                    <p><b>USN:4VV24SCS10</b></p>
+                    <p><b>Dept.: M.Tech(CSE)</b></p>
+                
+                </div>
+            </div>
+        </div>
+
+        <h2>Project Summary</h2>
+        <div class="project-summary">
+            <p>
+                <b>Introduction:</b><br>
+                The Edu-Assist Hub is an innovative educational web application designed to empower students by providing AI-powered tools to enhance their academic journey. Built with cutting-edge technologies and leveraging the Google Gemini AI API, this platform offers a wide range of services, including code generation, MCQ creation, email and letter drafting, essay writing, web content summarization, sentiment analysis, and more. The goal is to make learning more interactive, efficient, and accessible by providing students with resources to tackle complex academic tasks with ease.
+                <br><br>
+
+                <b>Objectives:</b><br>
+                <b>Enhancing Learning Experience:</b> Edu-Assist Hub aims to simplify challenging academic tasks such as coding, essay writing, and exam preparation by providing intelligent, AI-driven solutions.<br>
+                <b>Promoting Self-Learning:</b> By offering a suite of tools powered by AI, the app encourages students to explore concepts independently, fostering a deeper understanding of their subjects.<br>
+                <b>Facilitating Academic Tasks:</b> The platform streamlines tasks like generating professional emails or letters, creating practice MCQs, summarizing web content, and analyzing sentiment, saving students time and effort.<br>
+                <b>Personalized Student Support:</b> Edu-Assist Hub provides personalized features such as user profile management, history tracking of past interactions, and tailored AI responses to meet individual student needs.<br>
+                <br>
+
+                <b>Key Features:</b><br>
+                <b>Code Generation:</b> Students can input coding problems, and the app provides detailed solutions, including the programming language, error explanations, corrected code, and expected output (when applicable).<br>
+                <b>MCQ Generation:</b> The app generates multiple-choice questions on any topic, complete with answer options and explanations, making it ideal for exam preparation.<br>
+                <b>Email and Letter Writing:</b> Students can generate professional email templates and formal letters for various purposes, such as requesting sick leave or drafting academic correspondence.<br>
+                <b>Essay Writing Assistance:</b> The platform helps students write well-structured essays by generating content based on given topics, including introductions, body paragraphs, and conclusions.<br>
+                <b>Web Content Summarization:</b> Students can input URLs or text, and the app provides concise, informative summaries, helping them quickly grasp key information.<br>
+                <b>Sentiment Analysis:</b> The app analyzes text to determine its sentiment (positive, negative, or neutral), providing insights into tone and emotion, which is useful for communication and writing tasks.<br>
+                <b>History Tracking:</b> All interactions, such as generated code, emails, essays, and summaries, are saved in a history page, allowing students to review past work and track their progress.<br>
+                <b>User Profile Management:</b> Students can create and manage their profiles, including personal details, uploaded photos, and academic information, fostering a personalized experience.<br>
+                <b>Contact Us Support:</b> A dedicated contact form allows students to reach out for support.<br>
+                <br>
+
+                <b>Technology Stack:</b><br>
+                <b>Frontend:</b> HTML, CSS, JavaScript, EJS (Embedded JavaScript) templates for dynamic rendering.<br>
+                <b>Backend:</b> Node.js and Express.js for server-side logic and routing.<br>
+                <b>Database:</b> MongoDB for storing student profiles, history of interactions, and contact form submissions.<br>
+                <b>AI Integration:</b> Google Gemini AI API for generating code, MCQs, emails, letters, essays, and summaries.<br>
+                <b>Additional Libraries:</b> Sentiment for text sentiment analysis, bcrypt.js for password hashing.<br>
+                <br>
+
+                <b>Benefits for Students:</b><br>
+                <b>Time-Saving:</b> Automating tasks like code generation, essay writing, and email drafting saves students valuable time, allowing them to focus on learning.<br>
+                <b>Improved Productivity:</b> With tools for exam preparation (MCQs), communication (emails/letters), and content summarization, students can complete academic tasks more efficiently.<br>
+                <b>Enhanced Learning:</b> AI-driven insights, such as error explanations in code or sentiment analysis, provide deeper understanding and improve problem-solving skills.<br>
+                <b>Accessibility:</b> The platform is accessible via a web browser, making it easy for students to use from anywhere, whether on a laptop or mobile device.<br>
+                <b>Personalized Experience:</b> Features like history tracking and profile management ensure a tailored experience, allowing students to revisit past work and manage their academic journey.<br>
+                
+              
+                <b>Conclusion:</b><br>
+                Edu-Assist Hub is more than just a tool—it's a companion for students navigating the challenges of academic life. By combining the power of AI with a user-friendly interface, the platform offers a seamless way to learn, create, and grow. Whether you're debugging code, preparing for exams, or drafting a professional email, Edu-Assist Hub is here to support you every step of the way.
+            </p>
+            <br>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Edu-Assist Hub. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

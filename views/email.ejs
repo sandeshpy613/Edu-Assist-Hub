@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Template Generator</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background: url('https://images.unsplash.com/photo-1485470733090-0aae1788d5af?q=80&w=1834&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')
+          no-repeat center center / cover;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        height: 100vh;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background: rgba(0, 0, 0, 0.7);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 10;
+      }
+      header h1 {
+        color: white;
+      }
+      header nav button {
+        background: transparent;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .container {
+        margin-top: 100px;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 10px;
+        color: white;
+      }
+      textarea {
+        width: 100%;
+        height: 150px;
+        background: #282c34;
+        color: #61dafb;
+        border: 1px solid #444;
+        padding: 10px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 16px;
+        border-radius: 5px;
+      }
+      .output-area {
+        margin-top: 20px;
+        padding: 10px;
+        background: #282c34;
+        color: #61dafb;
+        border-radius: 5px;
+        min-height: 100px;
+        white-space: pre-wrap;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 16px;
+      }
+      footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        text-align: center;
+        padding: 10px 0;
+      }
+      footer p {
+        margin: 0;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Edu-Assist Hub</h1>
+      <nav>
+        <a href="http://localhost:3000/"><button>Logout</button></a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h1>Professional Email Template Generator</h1>
+      <p>Type your email purpose below and generate a professional email template.</p>
+      
+      <textarea id="email-input" placeholder="Type your email purpose here..."></textarea>
+      <div class="button-group mt-3">
+        <button class="btn btn-success" onclick="generateEmailTemplate()">Generate Email Template</button>
+        <button class="btn btn-info" onclick="downloadEmailTemplate()">Download</button>
+        <button class="btn btn-warning" id="save-btn" disabled onclick="saveEmailTemplate()">Save</button>
+      </div>
+      <div id="email-output" class="output-area mt-3">Email template will be displayed here...</div>
+    </div>
+
+    <footer>
+      <p>© 2025 Edu-Assist Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+      async function generateEmailTemplate() {
+        const purpose = document.getElementById("email-input").value;
+        if (!purpose.trim()) {
+          alert("Please type an email purpose before generating a template.");
+          return;
+        }
+        try {
+          const response = await fetch("/generate-email-template", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ purpose }),
+          });
+          const data = await response.json();
+          document.getElementById("email-output").textContent = data.emailOutput || "No email template generated.";
+          
+          // Enable the Save button after the template is generated
+          document.getElementById("save-btn").disabled = false;
+        } catch (error) {
+          console.error("Error:", error);
+          document.getElementById("email-output").textContent = "An error occurred while generating the email template.";
+        }
+      }
+
+      async function saveEmailTemplate() {
+        const input = document.getElementById("email-input").value;
+        const output = document.getElementById("email-output").textContent;
+
+        try {
+          const response = await fetch("/save-code", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              page: "email",
+              input,
+              output
+            }),
+          });
+          const data = await response.json();
+          if (data.success) {
+            alert("Email template saved successfully.");
+          } else {
+            alert("Failed to save email template: " + data.message);
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert("An error occurred while saving the email template.");
+        }
+      }
+
+      function downloadEmailTemplate() {
+        const purpose = document.getElementById("email-input").value;
+        const output = document.getElementById("email-output").textContent;
+        if (!output || output === "Email template will be displayed here..." || output === "No email template generated.") {
+          alert("No email template to download. Please generate an email template first.");
+          return;
+        }
+        const blob = new Blob(
+          [`Purpose:\n${purpose}\n\nGenerated Email Template:\n${output}`],
+          { type: "text/plain" }
+        );
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "email_template.txt";
+        a.click();
+      }
+    </script>
+  </body>
+</html>

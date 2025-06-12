@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coding Helper</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <style>
+    body {
+      background: url('https://images.unsplash.com/photo-1485470733090-0aae1788d5af?q=80&w=1834&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')
+        no-repeat center center / cover;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      height: 100vh;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background: rgba(0, 0, 0, 0.7);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 10;
+    }
+    header h1 {
+      color: white;
+    }
+    header nav button {
+      background: transparent;
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .container {
+      margin-top: 100px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      color: white;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+      background: #282c34;
+      color: #61dafb;
+      border: 1px solid #444;
+      padding: 10px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+    .output-area {
+      margin-top: 20px;
+      padding: 10px;
+      background: #282c34;
+      color: #61dafb;
+      border-radius: 5px;
+      min-height: 100px;
+      white-space: pre-wrap;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 16px;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      text-align: center;
+      padding: 10px 0;
+    }
+    footer p {
+      margin: 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Edu-Assist Hub</h1>
+    <nav>
+      <a href="/"><button>Logout</button></a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Coding Helper</h1>
+    <p>Type your program below and use the options to submit, save, or download it.</p>
+    
+    <textarea id="code-input" placeholder="Type your program here..."></textarea>
+    <div class="button-group mt-3">
+      <button class="btn btn-success" onclick="submitCode()">Submit</button>
+      <button class="btn btn-info" onclick="downloadCode()">Download</button>
+      <button class="btn btn-warning" id="save-btn" disabled onclick="saveCode()">Save</button>
+    </div>
+    <div id="code-output" class="output-area mt-3">Output will be displayed here...</div>
+  </div>
+
+  <footer>
+    <p>© 2025 Edu-Assist Hub. All rights reserved.</p>
+  </footer>
+
+  <script>
+    async function submitCode() {
+      const code = document.getElementById('code-input').value;
+      if (!code.trim()) {
+        alert('Please type a program before submitting.');
+        return;
+      }
+      try {
+        const response = await fetch('/generate-code', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code }),
+        });
+        const data = await response.json();
+        document.getElementById('code-output').textContent = data.codeOutput || 'No output received.';
+        
+        // Enable the Save button after output is generated
+        document.getElementById('save-btn').disabled = false;
+      } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('code-output').textContent = 'An error occurred.';
+      }
+    }
+
+    async function saveCode() {
+      const code = document.getElementById('code-input').value;
+      const output = document.getElementById('code-output').textContent;
+
+      try {
+        const response = await fetch('/save-code', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            page: 'code', // Added page field
+            inputCode: code, // Renamed to match your DB schema
+            outputCode: output // Renamed to match your DB schema
+          }),
+        });
+        const data = await response.json();
+        if (data.success) {
+          alert('Code saved successfully.');
+        } else {
+          alert('Failed to save code: ' + data.message);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while saving the code.');
+      }
+    }
+
+    function downloadCode() {
+      const code = document.getElementById('code-input').value;
+      const output = document.getElementById('code-output').textContent;
+      const blob = new Blob([`Program:\n${code}\n\nOutput:\n${output}`], { type: 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'program_and_output.txt';
+      a.click();
+    }
+  </script>
+</body>
+</html>

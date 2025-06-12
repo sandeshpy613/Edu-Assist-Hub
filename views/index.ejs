@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edu-Assist Hub</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://images.unsplash.com/photo-1508739773434-c26b3d09e071?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+      color: #fff;
+      width: 100%;
+      height: 100vh;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background: rgba(0, 0, 0, 0.7);
+      position: fixed;
+      width: 100%;
+      box-sizing: border-box;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      overflow: hidden;
+    }
+
+    header h1 {
+      font-size: 24px;
+      margin: 0;
+      color: white;
+    }
+
+    header nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding-right: 20px;
+    }
+
+    header nav button {
+      background: transparent;
+      border: 0px solid #fff;
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+      white-space: nowrap;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header nav button:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    .center-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 50px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      width: 500px;
+    }
+
+    .center-box h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .center-box button {
+      background: #656565;
+      color: #fff;
+      border: none;
+      padding: 10px 30px;
+      font-size: 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .center-box button:hover {
+      background: #626568;
+    }
+
+    /* Popup Styles */
+    .form-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(150, 148, 148, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      z-index: 100;
+      width: 500px;
+      max-width: 90%;
+      max-height: 80vh; /* Set max height for the popup */
+      overflow-y: auto; /* Enable vertical scrolling */
+      box-sizing: border-box;
+    }
+
+    .form-popup form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .form-popup input,
+    .form-popup textarea,
+    .form-popup select {
+      padding: 12px;
+      font-size: 12px;
+      border: 0px solid #ccc;
+      border-radius: 5px;
+      width: 95%;
+      background: #222;
+      color: #fff;
+    }
+
+    .form-popup button {
+      padding: 10px;
+      font-size: 12px;
+      border: 0px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+      background: #58595b;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .form-popup button:hover {
+      background: #3d3e3f;
+    }
+
+    .back-btn {
+      background: transparent;
+      color: #cd3737;
+      border: none;
+      font-size: 16px;
+      padding: 10px 20px;
+      cursor: pointer;
+      color: red;
+      border-radius: 5px;
+      width: 100%;
+      transition: background 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #ffcccc;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Edu-Assist Hub</h1>
+    <nav>
+      <a href="http://localhost:3000/Project">
+        <button>About Us</button>
+      </a>
+      <a href="http://localhost:3000/contactus">
+        <button>ContactUs</button>
+      </a>
+      <button onclick="openPopup('loginPopup')">Login</button>
+      <button onclick="openPopup('signupPopup')">Sign Up</button>
+    </nav>
+  </header>
+
+  <!-- Center Box -->
+  <div class="center-box">
+    <h1>Edu-Assist Hub</h1>
+    <h2>Welcomes You!</h2>
+    <button onclick="openPopup('loginPopup')">Get Started</button>
+  </div>
+
+  <!-- Login Popup -->
+  <div id="loginPopup" class="form-popup">
+    <h1>Login</h1>
+    <form action="/login" method="get">
+      <input type="text" name="std_id" placeholder="Student ID" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+      <button class="back-btn" onclick="closePopup('loginPopup')">Back</button>
+    </form>
+  </div>
+
+  <!-- Sign Up Popup -->
+  <div id="signupPopup" class="form-popup">
+    <h1>Sign Up</h1>
+    <form id="registrationForm" action="/register" method="post" enctype="multipart/form-data">
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="text" name="std_id" placeholder="Student ID" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <input type="text" name="fname" placeholder="First Name" required>
+      <input type="text" name="lname" placeholder="Last Name" required>
+      <input type="text" name="age" placeholder="Age" required>
+      <select name="gender" required>
+        <option value="">--Select Your Gender--</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <input type="date" name="dob" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="text" name="course" placeholder="Course" required>
+      <input type="text" name="branch" placeholder="Branch" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+      <textarea name="address" placeholder="Address" required></textarea>
+      <select name="state" required>
+        <option value="">--Select Your State--</option>
+        <option value="Karnataka">Karnataka</option>
+        <option value="Maharashtra">Maharashtra</option>
+        <option value="Tamil Nadu">Tamil Nadu</option>
+        <option value="Kerala">Kerala</option>
+        <option value="Telangana">Telangana</option>
+      </select>
+      <input type="text" name="pincode" placeholder="Pin Code" required>
+      <div>
+        <label>Hobbies:</label>
+        <label><input type="checkbox" name="hobbies" value="Music"> Music</label>
+        <label><input type="checkbox" name="hobbies" value="Movies"> Movies</label>
+        <label><input type="checkbox" name="hobbies" value="Sports"> Sports</label>
+        <label><input type="checkbox" name="hobbies" value="Travel"> Travel</label>
+      </div>
+      <label>Upload Profile Photo:</label>
+      <input type="file" name="photo" accept=".jpeg, .jpg, .png" >
+      <button type="submit">Register</button>
+      <button class="back-btn" onclick="closePopup('signupPopup')">Back</button>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Edu-Assist Hub. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function openPopup(id) {
+      // Close other popups if they are open
+      const otherPopupId = id === 'loginPopup' ? 'signupPopup' : 'loginPopup';
+      document.getElementById(otherPopupId).style.display = 'none';
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function closePopup(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    // Handle form submission
+    document.getElementById('registrationForm').addEventListener('submit', async (event) => {
+      event.preventDefault(); // Prevent default form submission
+
+      const formData = new FormData(event.target); // Get form data
+
+      // Get the Student ID
+      const std_id = formData.get('std_id');
+
+      try {
+        const response = await fetch('/register', {
+          method: 'POST',
+          body: formData, // Send form data
+        });
+
+        const result = await response.json(); // Parse the JSON response
+
+        if (result.success) {
+          alert(result.message); // Show success alert
+          closePopup('signupPopup'); // Close the signup popup
+          openPopup('loginPopup'); // Open the login popup
+        } else {
+          alert(result.message); // Show error alert
+        }
+      } catch (error) {
+        console.error('Error during registration:', error);
+        alert('An unexpected error occurred. Please try again.'); // Show generic error alert
+      }
+    });
+  </script>
+</body>
+
+</html>

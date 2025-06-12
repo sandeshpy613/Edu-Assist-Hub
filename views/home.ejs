@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background: url('https://images.unsplash.com/photo-1485470733090-0aae1788d5af?q=80&w=1834&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      height: 100vh;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background: rgba(0, 0, 0, 0.7);
+      position: fixed;
+      width: 100%;
+      box-sizing: border-box;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      overflow: hidden;
+    }
+
+    header h1 {
+      font-size: 24px;
+      margin: 0;
+      color: white;
+      /* Updated text color to white */
+    }
+
+
+    header nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding-right: 20px;
+    }
+
+    header nav button {
+      background: transparent;
+      border: 0px solid #fff;
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+      white-space: nowrap;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header nav button:hover {
+      background: #fff;
+      color: #000;
+    }
+
+
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      text-align: center;
+      margin-top: 80px;
+      padding: 20px;
+    }
+
+    .app-section {
+      margin-bottom: 30px;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .app-section h3 {
+      color: #ffffff;
+      font-size: 24px;
+    }
+
+    .app-section p {
+      color: #ccc;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .app-button {
+      background-color: #787878;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, opacity 0.3s;
+      width: 100%;
+      /* Ensure the button takes full width of its container */
+      max-width: 300px;
+      /* Limit the max width */
+      margin: 5px;
+    }
+
+    .app-button:hover {
+      background-color: transparent;
+      /* Make it transparent */
+      color: #00c000;
+      /* Change text color on hover */
+      border: 2px solid #ffffff;
+      /* Add a border when hovering */
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .app-list {
+      overflow-y: auto;
+      max-height: 70vh;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Edu-Assist Hub</h1>
+    <nav>
+      <a href="http://localhost:3000/History"><button>History</button></a>
+      <a href="http://localhost:3000/Project"><button>About Us</button></a>
+      <a href="http://localhost:3000/contactus"><button>Contact Us</button></a>
+      <a href="/profile?std_id=<%= std_id %>"><button>Profile</button></a>
+      <a href="/"><button>Logout</button></a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1>Welcome to the Home Page</h1>
+    <h2>Hello, User <%= std_id %> !</h2>
+    <p>We are glad to have you on the Student Portal. Explore the following apps to help you in your academic journey:</p>
+    <!-- Scrollable App List -->
+    <div class="app-list">
+      <div class="app-list">
+
+        <!-- App 1: Coding Helper -->
+        <div class="app-section">
+          <h3>Coding Helper</h3>
+          <p>Get assistance with coding challenges, troubleshoot your code, and learn new coding concepts. Ideal for both
+            beginners and advanced learners.</p>
+          <!-- Add this button inside home.ejs -->
+          <a href="http://localhost:3000/code"><button class="app-button">Coding Helper</button></a>
+  
+        </div>
+  
+        <!-- App 2: AI-Driven MCQ Generator -->
+        <div class="app-section">
+          <h3>AI-Driven MCQ Generator</h3>
+          <p>Generate multiple-choice questions automatically based on a given topic. Perfect for students, teachers, and
+            exam preparers.</p>
+          <a href="http://localhost:3000/mcq"><button class="app-button">AI-Driven MCQ Generator</button></a>
+        </div>
+  
+        <!-- App 3: Professional Email Template Generator -->
+        <div class="app-section">
+          <h3>Professional Email Template Generator</h3>
+          <p>Create custom email templates for professional communication with ease. Save time and make your emails look
+            polished and formal.</p>
+          <a href="http://localhost:3000/email"><button class="app-button">Email Template Generator</button></a>
+        </div>
+  
+        <!-- App 4: Professional Letter Template Generator -->
+        <div class="app-section">
+          <h3>Professional Letter Template Generator</h3>
+          <p>Generate formal and professional letter templates for different occasions. Whether it’s for job applications
+            or official requests, we’ve got you covered.</p>
+          <a href="http://localhost:3000/letter"><button class="app-button">Letter Template Generator</button></a>
+        </div>
+  
+        <!-- App 5: Essay Generator -->
+        <div class="app-section">
+          <h3>Essay Generator</h3>
+          <p>Generate well-researched and structured essays for various topics. This tool helps you in writing essays with
+            ease, saving time and effort.</p>
+          <a href="http://localhost:3000/essay"><button class="app-button">Essay Generator</button></a>
+        </div>
+  
+        <!-- App 6: Website User Interface Summary Generator -->
+        <div class="app-section">
+          <h3>Website UI Summary Generator</h3>
+          <p>Generate a summary of any website’s user interface just by providing the URL. Ideal for web designers and
+            developers.</p>
+          <a href="http://localhost:3000/summary"><button class="app-button">UI Summary Generator</button></a>
+        </div>
+  
+        <!-- App 7: Text Sentimental Analysis -->
+        <div class="app-section">
+          <h3>Text Sentimental Analysis</h3>
+          <p>Analyze the sentiment of any given text, whether it's positive, negative, or neutral. Useful for businesses
+            and marketers to understand customer opinions.</p>
+          <a href="http://localhost:3000/senti"><button class="app-button">Text Sentimental Analysis</button></a>
+        </div>
+  
+  
+  
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Edu-Assist Hub. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
